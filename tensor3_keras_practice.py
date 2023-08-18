@@ -4,6 +4,7 @@ IS_ADMIT / GRE / GPA / UNIV_RANK
 GRE가 760점, GPA가 3.0, 지원하는 대학교랭킹이 2일 경우 이 학생은 합격할지 여부를 확률로 나타내보시오.
 '''
 
+import numpy as np
 import pandas as pd
 import tensorflow as tf
 
@@ -29,5 +30,8 @@ model = tf.keras.models.Sequential([
 ]) # 모델 / 원하는 결과물를 도출하도록 모델을 설계하기
 
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy']) # binary_crossentropy는 확률문제에 적합한 손실함수
+model.fit(np.array(train_x), np.array(train_y), epochs=1000) # numpy array로 변환
 
-model.fit(train_x, train_y, epochs=10)
+# 문제 예측
+forcast_y = model.predict([[760, 3.0, 2], [400, 2.2, 1]])
+print(forcast_y)

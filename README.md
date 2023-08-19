@@ -64,4 +64,3 @@
         tf.constant([3,4,5], tf.float32)
         ```
     -`tf.cast` 메서드 사용하기
-
